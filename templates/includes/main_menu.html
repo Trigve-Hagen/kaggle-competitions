@@ -25,22 +25,14 @@
     <form class="d-flex">
       <select class="custom-select mr-sm-2 mx-1" id="comp-competition" aria-label="Switch Competition">
         {% for key, value in competition_directories.items() %}
-          {% if key == mach_competition %}
-            <option value="{{ key }}" selected="selected">{{ value }}</option>
-          {% else %}
-            <option value="{{ key }}">{{ value }}</option>
-          {% endif %}
+          <option value="{{ key }}" {% if key == mach_competition %} selected {% endif %}>{{ value }}</option>
         {% endfor %}
       </select>
     </form>
     <form class="d-flex me-3">
       <select class="custom-select mx-1" id="comp-submission" aria-label="Switch Submission">
         {% for key, value in submission_directories.items() %}
-          {% if key == mach_submission %}
-            <option value="{{ key }}" selected="selected">{{ value }}</option>
-          {% else %}
-            <option value="{{ key }}">{{ value }}</option>
-          {% endif %}
+          <option value="{{ key }}" {% if key == mach_submission %} selected {% endif %}>{{ value }}</option>
         {% endfor %}
       </select>
     </form>
