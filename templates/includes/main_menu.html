@@ -1,0 +1,48 @@
+<!-- templates/includes/menu.html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand ps-3" href="#">{{ competition }}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link{% if request.endpoint == 'index' %} active{% endif %}" href="{{ url_for('index') }}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link{% if request.endpoint == 'data' %} active{% endif %}" href="{{ url_for('data') }}">Data</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link{% if request.endpoint == 'columns' %} active{% endif %}" href="{{ url_for('columns') }}">Columns</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link{% if request.endpoint == 'ideas' %} active{% endif %}" href="{{ url_for('ideas') }}">Ideas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link{% if request.endpoint == 'rules' %} active{% endif %}" href="{{ url_for('rules') }}">Rules</a>
+      </li>
+    </ul>
+    <form class="d-flex">
+      <select class="custom-select mr-sm-2 mx-1" id="comp-competition" aria-label="Switch Competition">
+        {% for key, value in competition_directories.items() %}
+          {% if key == mach_competition %}
+            <option value="{{ key }}" selected="selected">{{ value }}</option>
+          {% else %}
+            <option value="{{ key }}">{{ value }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </form>
+    <form class="d-flex me-3">
+      <select class="custom-select mx-1" id="comp-submission" aria-label="Switch Submission">
+        {% for key, value in submission_directories.items() %}
+          {% if key == mach_submission %}
+            <option value="{{ key }}" selected="selected">{{ value }}</option>
+          {% else %}
+            <option value="{{ key }}">{{ value }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </form>
+  </div>
+</nav>

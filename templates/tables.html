@@ -1,0 +1,17 @@
+<!-- templates/tables.html -->
+{% extends 'layout.html' %}
+
+{% block title %}Data Tables{% endblock %}
+
+{% block content %}
+<h1 class="my-5">Data Tables</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+        {{ table | safe }}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

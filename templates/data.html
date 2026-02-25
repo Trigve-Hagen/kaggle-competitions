@@ -1,0 +1,38 @@
+<!-- templates/data.html -->
+{% extends 'layout.html' %}
+
+{% block title %}Mania Data{% endblock %}
+
+{% block content %}
+  <h1 class="my-5">Data Files</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+        {% for filename, columns in csv_data.items() %}
+          <div class="col-md-3 mb-3">
+              <div class="card h-100">
+                  <div class="card-header bg-dark text-white">
+                      {{ filename }}
+                  </div>
+                  <div class="card-body">
+                      <ul class="list-group list-group-flush">
+                          {% for col in columns %}
+                          <li class="list-group-item">{{ col }}</li>
+                          {% endfor %}
+                      </ul>
+                  </div>
+                  <div class="card-footer">
+                    <a class="text-dark" href="{{ url_for('tables', item=filename) }}" class="card-link">1st 500 rows</a>
+                  </div>
+              </div>
+          </div>
+          <!-- Closes row and starts new one every 3 items -->
+          {% if loop.index % 4 == 0 %}
+            </div><div class="row">
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
