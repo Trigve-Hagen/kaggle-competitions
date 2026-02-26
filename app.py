@@ -128,14 +128,14 @@ def competitions():
 
 @app.context_processor
 def submissions():
-  available_dirs = Data.get_subdirectories(
-    os.path.join(app.root_path, 'competitions', getCompetition(), 'submissions')
-  )
-  proper_name_dict = {}
-  for machine_name in available_dirs:
-    proper_name = machine_name.replace('_', ' ').title()
-    proper_name_dict[machine_name] = proper_name
-  return dict(submission_directories=proper_name_dict)
+  FILES_DIR = os.path.join(app.root_path, 'competitions', getCompetition(), 'submissions')
+  files = {}
+  for entry in os.listdir(FILES_DIR):
+    full_path = os.path.join(FILES_DIR, entry)
+    if os.path.isfile(full_path):
+      proper_name = entry.replace('.py', '').title()
+      files[entry] = proper_name
+  return dict(submission_directories=files)
 
 @app.context_processor
 def inject_site_settings():
