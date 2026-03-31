@@ -7,7 +7,7 @@ Each script has a list of pip installs and instructions using .venv and Powershe
 in PS:
 cd path-to-your-project
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+.venv\Scripts\Activate.ps1
 pip install matplotlib seaborn tensorflow torch numpy pandas scikit-learn Flask Flask-SQLAlchemy
 python app.py
 
