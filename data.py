@@ -63,9 +63,86 @@ class Data:
     return df.to_html(index=False, classes="table table-striped", justify='unset')
 
   # Takes the columns results and separates the results by the distinct years.
-  def years():
-    pass
+  def split_csv_by_year(input_file, column_name, output_path):
+    # Read the CSV file into a pandas DataFrame
+    df = pd.read_csv(input_file)
 
-  # Takes the years results and separates the results by the distinct teams.
-  def teams():
-    pass
+    # Ensure the year column is treated as a string to extract the year correctly if it's a date object
+    # If the column contains only 4-digit integers, this step can be skipped
+    # Example for date formats (adjust the format string if needed):
+    # df[column_name] = pd.to_datetime(df[column_name]).dt.year.astype(str)
+
+    # Get unique years from the specified column
+    unique_years = df[column_name].unique()
+
+    # Create a separate CSV for each unique year
+    for year in unique_years:
+        # Filter the DataFrame for the current year
+        df_filtered = df[df[column_name] == year]
+
+        # Define the output file name
+        output_file = output_path / f"{column_name}_{year}.csv"
+
+        # Write the filtered data to a new CSV file
+        df_filtered.to_csv(output_file, index=False)
+        print(f"Created: {output_file} with {len(df_filtered)} rows")
+
+  # Takes the teams and details and separates them by the distinct teams.
+  def split_csv_by_teams(teams_file, details_file, output_dir="team_games"):
+    # Ensure output directory exists
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    # 1. Read the CSV files into pandas DataFrames
+    try:
+        teams_df = pd.read_csv(teams_file)
+        details_df = pd.read_csv(details_file)
+    except FileNotFoundError as e:
+        print(e)
+        return
+
+    # 2. Merge the DataFrames on the common 'team_id' column
+    # Assuming the team ID column is named 'team_id' in both CSVs.
+    # Adjust 'how' parameter as needed (e.g., 'inner', 'left')
+    merged_df = pd.merge(teams_df, details_df, on='team_id', how='inner')
+
+    # 3. Group the merged data by team name (or team_id)
+    # Assuming there is a 'team_name' column in the teams file
+    team_groups = merged_df.groupby('team_name')
+
+    # 4. Iterate through each group and save to a separate CSV file
+    for team_name, group_df in team_groups:
+        # Sanitize team name for filename (e.g., replace spaces with underscores)
+        filename = f"{team_name.replace(' ', '_')}_games.csv"
+        filepath = os.path.join(output_dir, filename)
+
+        # Save the group DataFrame to a CSV file
+        # index=False prevents pandas from writing the DataFrame index as a column
+        group_df.to_csv(filepath, index=False)
+        print(f"Saved game details for {team_name} to {filepath}")
+        # check_connection(website["name"], website["url"])
+
+
+    # Create a separate CSV for each unique year
+    """ for year in unique_years:
+        # Filter the DataFrame for the current year
+        df_filtered = df[df[column_name] == year]
+
+        # Define the output file name
+        output_file = output_path / f"{column_name}_{year}.csv"
+
+        # Write the filtered data to a new CSV file
+        df_filtered.to_csv(output_file, index=False)
+        print(f"Created: {output_file} with {len(df_filtered)} rows") """
+
+
+# 1. Initialize the class
+  # merger = MergeColumns('final_destination.csv')
+
+  # 2. Add files and the columns you want from each
+  # Example: Take 'ID' and 'Name' from users.csv, 'Salary' from finance.csv
+  # merger.add_file_columns('users.csv', ['ID', 'Name'])
+  # merger.add_file_columns('finance.csv', ['Salary'])
+
+  # 3. Perform the merge
+  # merger.merge_to_csv()

@@ -42,6 +42,7 @@ class MergeColumns:
     final_df.to_csv(self.output_file, index=False)
     print(f"Successfully created: {self.output_file}")
 
+
 # --- Example Usage ---
 # if __name__ == "__main__":
   # 1. Initialize the class

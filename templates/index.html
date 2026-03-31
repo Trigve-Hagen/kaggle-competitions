@@ -4,18 +4,109 @@
 {% block title %}Home Page{% endblock %}
 
 {% block content %}
-<h1 class="my-4">Installation Instructions</h1>
 
-<p>This section provides everything you need to build a simple prediction model and submit predictions.</p>
-<ul>
-    <li>Team ID's and Team Names</li>
-    <li>Tournament seeds since 1984-85 season</li>
-    <li>Final scores of all regular season, conference tournament, and NCAA® tournament games since 1984-85 season</li>
-    <li>Season-level details including dates and region names</li>
-    <li>Example submission files</li>
-</ul>
-<p>By convention, when we identify a particular season, we will reference the year that the season ends in, not the year that it starts in.
+<h3 class="my-4">K-Nearest Neighbor Regression</h3>
+<p>"The square root of the sum of the squared differences between the x-coordinates and y-coordinates."</p>
+<p>The Euclidean distance formula calculates the straight-line distance between two points.
+<br />To find the distance between <b>point 1: (1, 2)</b> and <b>point 2: (4, 6)</b>
+<br />
+<br /><b>Difference in x:</b>
+<br />(4 - 1) = 3
+<br /><b>Difference in y:</b>
+<br />(6 - 2) = 4
+<br /><b>Square the differences:</b>
+<br />(3^2) = 9, (4^2) = 16
+<br /><b>Sum of squares:</b>
+<br />(9 + 16) = 25
+<br /><b>Square root of sum:</b>
+<br />(sqrt{25} = 5)
+<br />The Euclidean distance = 5</p>
 
-<h3 class="my-4">Data Section 1 file: MTeams.csv and WTeams.csv</h3>
+<h3 class="my-4">Linear Regression</h3>
+<p>"The mean squared error is the average of the squared differences between the observed values and the predicted values."</p>
+<math display="inline">
+  <mrow>
+    <mn>M</mn>
+    <mn>S</mn>
+    <mn>E</mn>
+    <mo>=</mo>
+  </mrow>
+  <mfrac>
+    <mrow>1</mrow>
+    <mrow>n</mrow>
+  </mfrac>
+  <mrow>
+    <munderover>
+      <mo>∑</mo>
+      <mrow>
+        <mi>i</mi>
+        <mo>=</mo>
+        <mn>1</mn>
+      </mrow>
+      <mrow>
+        <mn>n</mn>
+      </mrow>
+    </munderover>
+    <msup>
+      <mrow>
+        <mo>(</mo>
+        <msub><mi>y</mi><mn>i</mn></msub><mo>-</mo><msub><mover><mi>y</mi><mo>̂</mo></mover><mn>i</mn></msub>
+        <mo>)</mo>
+      </mrow>
+      <mrow>
+        <mn>2</mn>
+      </nrow>
+    </msup>
+  </mrow>
+</math>
+<br /><br />
+<p><b>y<sub>i</sub></b> = [10, 15, 20]
+<br /><b>&ycirc;<sub>i</sub></b> = [12, 14, 21]
+<br />
+<br /><b>n</b>: Total number of data points (observations).
+<br /><b>y<sub>i</sub></b>: The actual value observed.
+<br /><b>&ycirc;<sub>i</sub></b>: The predicted value from the model.
+<br />
+<br /><b>Calculate Differences (</b> <b>y<sub>i</sub></b> <b>-</b> <b>&ycirc;<sub>i</sub></b> <b>)</b>:
+<br />(10 - 12) = -2
+<br />(15 - 14) = 1
+<br />(20 - 21) = -1
+<br /><b>Square the Differences:</b>
+<br />(-2)^2 = 4
+<br />(1)^2 = 1
+<br />(-1)^2 = 1
+<br /><b>Sum the Squared Differences:</b>
+<br />4 + 1 + 1 = 6
+<br /><b>Divide by: n = 3</b>
+<br />MSE = 6 / 3 = 2.0</p>
+
+<h3 class="my-4">Logistic Regression</h3>
+<p><b>Cross-entropy</b> is a loss function used in machine learning to measure the performance of classification models by calculating the difference between predicted probabilities and actual labels. <b>Logits</b> are the raw, unnormalized, real-valued scores produced by the final linear layer of a neural network before applying an activation function like softmax. <b>Softmax</b> converts raw model outputs (logits) into probabilities, while cross-entropy measures the difference between these probabilities and true labels. Together, they provide stable, large gradients during training—avoiding vanishing gradients, especially at the start—and form a convex loss function for efficient optimization. A <b>gradient</b> is a vector of partial derivatives that points in the direction of the steepest ascent of a loss function. If you calculate larger and larger power of a number under 1 it continues to get smaller till it reaches zero and you get <b>Vanishing Gradient</b>. If you calculate larger and larger power of a number over one you get <b>Exploding gradient</b>. A <b>bit</b> is a 0 or 1. Two bits is 0 and a 1. In trasmitting a messenge from a sender to a recipient the message is tranmitted in bits. In Shannon's theory to transit one bit of information is reducing the recipients uncertainty by a factor of 2. <b>Labels</b> are the output variables or the answers.
+<br /><a href="https://www.youtube.com/watch?v=ErfnhcEV1O8" target="_blank">Entropy, Cross-Entropy and KL-Divergence</a>
+<br /><a href="https://www.mathsisfun.com/calculus/derivatives-introduction.html" target="_blank">Derivatives</a>
+<br /><a href="https://www.mathsisfun.com/calculus/derivatives-partial.html" target="_blank">Partial Derivatives</a></p>
+<p><b>Logarithms</b> The log() function, or logarithm tells us what the exponent is. 2<sup>x</sup>=8 becomes log<sub>2</sub>8=x which is log<sub>2</sub>8=3 It answers the question: "To what power must a given base be raised to obtain a specific number?"<br /><br />Consider the equation 10<sup>3</sup>=1000. In this case, the base b is 10, the exponent y is 3, and the result x is 1000. The logarithmic form of this equation is log<sub>10</sub>(1000)=3. This means "the power to which 10 must be raised to get 1000 is 3."<br /><br /><b>Key Elements:</b><br /><b>Base:</b> The number that is being raised to a power. Common bases include 10 common logarithm, often written as log(x) without a subscript and e natural logarithm, written as ln(x).<br /><b>Argument:</b> The number for which the logarithm is being calculated. This number must always be positive.<br /><b>Result:</b> The exponent to which the base must be raised to equal the argument.<br /><br /><b>Example:</b> log<sub>2</sub>(8).<br />This asks: "To what power must 2 be raised to get 8?"<br />We know that 2^1 = 2, We know that 2^2 = 4, and We know that 2^3 = 8.<br /><b>Therefore</b> log<sub>2</sub>(8)=3.<br /><br />The logarithm in the cross-entropy loss function is used to heavily penalize confident, wrong predictions, convert multiplicative probabilities into additive losses for easier optimization, and provide numerical stability. It turns small errors into manageable losses and large errors into massive losses, driving better classification performance.<br />
+<br /><b>Drastic Penalty for Wrong Predictions:</b> If the true label <b>y = 1</b> and the model predicts a low probability <b>&ycirc; = 0.01</b> (high confidence, wrong), <b>-log(0.01)</b> becomes a large number. Conversely, if <b>y = 1</b> and <b>&ycirc; = 0.99</b> (high confidence, right), <b>-log(0.99)</b> is very low.</p>
+<br />
+<p>"The negative average of the true class labels multiplied by the natural logarithm of the predicted probabilities"</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo largeop="true" movablelimits="true">∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mo>[</mo><msub><mi>y</mi><mi>i</mi></msub><mi>log</mi><mo>(</mo><msub><mover accent="true"><mi>y</mi><mo>̂</mo></mover><mi>i</mi></msub><mo>)</mo><mo>+</mo><mo>(</mo><mn>1</mn><mo>−</mo><msub><mi>y</mi><mi>i</mi></msub><mo>)</mo><mi>log</mi><mo>(</mo><mn>1</mn><mo>−</mo><msub><mover accent="true"><mi>y</mi><mo>̂</mo></mover><mi>i</mi></msub><mo>)</mo><mo>]</mo></mrow><annotation encoding="text/plain">cap L equals negative the fraction with numerator 1 and denominator cap N end-fraction sum from i equals 1 to cap N of open bracket y sub i log open paren y hat sub i close paren plus open paren 1 minus y sub i close paren log open paren 1 minus y hat sub i close paren close bracket</annotation></semantics></math>
+<br /><br /><br />
+<p>
+<br /></p>
+
+<h3 class="my-4">Decision Trees</h3>
+
+<h3 class="my-4">Random Forest</h3>
+
+<h3 class="my-4">Naive Bayes</h3>
+
+<h3 class="my-4">Principal Component Analysis</h3>
+
+<h3 class="my-4">Perceptron</h3>
+
+<h3 class="my-4">Support Vector Machine</h3>
+
+<h3 class="my-4">K-Means</h3>
+
 {% endblock %}
 

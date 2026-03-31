@@ -5,6 +5,12 @@
 
 {% block content %}
 <h1 class="my-4">Ideas</h1>
+<a href="https://towardsdatascience.com/courage-to-learn-ml-explain-backpropagation-from-mathematical-theory-to-coding-practice-21e670415378/" target="_blank">courage-to-learn-ml-explain-backpropagation-from-mathematical-theory-to-coding-practice</a><br />
+<a href="https://www.youtube.com/watch?v=tOfdzeYRadc" target="_blank">derivatives</a><br /><br />
+
+<a href="https://karpathy.github.io/2019/04/25/recipe/" target="_blank">recipe</a><br />
+<a href="https://www.ibm.com/think/topics/overfitting-vs-underfitting" target="_blank">overfitting-vs-underfitting</a><br />
+<a href="https://distill.pub/2017/momentum/" target="_blank">momentum</a>
 
 <h3 class="my-4">Latest News 2026</h3>
 <p>As of late February 2026, the college basketball season is in the final, critical stretch of the regular season, with teams jockeying for position in conference standings before the upcoming conference tournaments and NCAA tournament. Top teams like Michigan are currently ranked No. 1, with heavy competition in conferences like the Big Ten.</p>
@@ -16,7 +22,142 @@
     Key Teams: Michigan, Arizona, Houston, and Florida are leading the national conversation.
 
 <p>The season is in full swing with major games determining bracket seeding.</p>
+<h3 class="my-4">Sorce Code</h3>
+<p>I googled best strategy for prediction game outcomes or something like that and got this. I figure that I probably won't win because I'm brand new so I'm going to focus on building something completely new. I'm following the Possible Strategy below. On the front page for the March Madness competition I saw the data listed and available for download while loged out so I hope posting all this does not disqualify me. I saw you would need a source of code if I win to look at too so this will be it.</p>
 <h3 class="my-4">Possible Strategy</h3>
-<p>You could build a goal list here. Thats what I have been doing. And having fun building in python and flask to get used to it. Ill add more to the index page as documentation on how to set it up and use it.</p>
 
+<p>To determine the team with the highest win probability, focus on "Four Factors" advanced statistics over raw scoring:</p>
+<ul>
+    <li>Effective Field Goal Percentage (eFG%) for shooting efficiency</li>
+    <li>Turnover Rate (TOV%) for ball security</li>
+    <li>Offensive Rebound Percentage (ORB%) for extra possessions</li>
+    <li>Free Throw Rate (FTR) for scoring without the clock running</li>
+</ul>
+<p>Here is how to analyze these metrics:</p>
+<h5>1. The Four Factors (Weighted Importance)</h5>
+<ul>
+    <li><b>Effective Field Goal % (eFG% - 40% weight):</b> This adjusts for the fact that 3-pointers are worth more than 2-pointers. A higher eFG% indicates a more efficient offense.</li>
+    <li><b>Turnover Percentage (TOV% - 25% weight):</b> Measures how often a team turns the ball over per 100 possessions. Lower is better.</li>
+    <li><b>Offensive Rebounding Percentage (ORB% - 20% weight):</b> Represents the percentage of available offensive rebounds a team grabs. Higher creates more shot opportunities.</li>
+    <li><b>Free Throw Rate (FTR - 15% weight):</b> Measures how often a team gets to the foul line. High FTR suggests an aggressive offense that draws fouls.</li>
+</ul>
+<h5>2. Key Efficiency and Team Metrics</h5>
+<ul>
+    <li><b>Assist-to-Turnover Ratio:</b> A 2:1 ratio (20 assists to 10 turnovers) is a strong indicator of elite ball movement and disciplined play.</li>
+    <li><b>Rebounding Margin:</b> A positive margin indicates a team controls the boards, limiting opponent second chances while gaining their own.</li>
+    <li><b>Points Allowed per Game:</b> A low score here demonstrates strong defensive performance.</li>
+</ul>
+<h5>3. Contextual Factors</h5>
+<ul>
+    <li><b>Home/Away Record:</b> A team's performance often changes significantly based on the venue.</li>
+    <li><b>Recent Trends:</b> Analyze the last 5–10 games to gauge momentum, rather than just the season average.</li>
+</ul>
+<p>By comparing these metrics between two teams, you can identify which team is more efficient at shooting, better at taking care of the ball, and more dominant on the boards, which generally translates to a higher chance of winning.</p>
+<h3 class="my-4">TODO List</h3>
+<ol>
+  <li>Create a class for separatings columns into years, and teams.
+    <ul>
+      <li>Divide the data into years.</li>
+      <li>Divide the year into tournament teams.</li>
+      <li>Make models that predict for each year and teams combination.</li>
+    </ul>
+  </li>
+  <li>Study up on differences of regular season, conference tournament, and NCAA® tournament games. Do I need these to be separated?</li>
+</ol>
+<h3 class="my-4">Tutorial TODO List</h3>
+<ol>
+  <li>Rerun <a href="https://www.kaggle.com/learn/intro-to-machine-learning" target="_blank">intro-to-machine-learning</a> but build it here and build the submission API so you can make sumission here.</li>
+  <li>Do <a href="https://www.kaggle.com/learn/intermediate-machine-learning" target="_blank">intermediate-machine-learning</a>, build it here and make further submissions on the housing competition.</li>
+  <li>Find a numpy only tutorial for the housing competition dataset.</li>
+  <li>Do the housing competition dataset useing pytorch <a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP63URZnh5iqBzDTDYPUTQT-8" target="_blank">mit-pytorch-machine-learning</a>.</li>
+  <li>Pytorch housing pricing tutorial here <a href="https://d2l.ai/chapter_multilayer-perceptrons/kaggle-house-price.html" target="_blank">kaggle-house-price</a></li>
+</ol>
+<h3 class="my-4">Network Architecture</h3>
+<ol>
+  <li>Two neuron output with softmax</li>
+</ol>
+<h3 class="my-4">Network Data Architecture</h3>
+<ul>
+  <li><b>year:</b>
+    <ul>
+      <li><b>Files:</b> MRegularSeasonDetailedResults.csv and WRegularSeasonDetailedResults.csv and MNCAATourneyDetailedResults.csv and WNCAATourneyDetailedResults.csv</li>
+      <li><b>Column:</b> Season - this is the year of the associated entry</li>
+      <li><b>value:</b> Integer not used in prediction. Just for separating data into files.</li>
+    </ul>
+  </li>
+  <li><b>team:</b>
+    <ul>
+      <li><b>Files:</b> MRegularSeasonDetailedResults.csv and WRegularSeasonDetailedResults.csv and MNCAATourneyDetailedResults.csv and WNCAATourneyDetailedResults.csv</li>
+      <li><b>Column:</b> WTeamID and LTeamID- this identifies the id number of the team that won the game, as listed in the "MTeams.csv" or "WTeams.csv" file.</li>
+      <li><b>value:</b> Integer not used in prediction. Just for separating data into files.</li>
+    </ul>
+  </li>
+  <li><b>EFG%:</b>
+    <ul>
+      <li><b>Files:</b> MRegularSeasonDetailedResults.csv and WRegularSeasonDetailedResults.csv and MNCAATourneyDetailedResults.csv and WNCAATourneyDetailedResults.csv</li>
+      <li><b>Column:</b> WFGM - field goals made (by the winning team)</li>
+      <li><b>value:</b> The total number of shots made (baskets), not the total points scored. Both two-point field goals and three-point field goals.</li>
+    </ul>
+  </li>
+  <li><b>TOV%:</b>
+    <ul>
+      <li><b>Files:</b> MRegularSeasonDetailedResults.csv and WRegularSeasonDetailedResults.csv and MNCAATourneyDetailedResults.csv and WNCAATourneyDetailedResults.csv</li>
+      <li><b>Column:</b> WTO - turnovers committed (by the winning team)</li>
+      <li><b>value:</b> Turnovers</li>
+    </ul>
+  </li>
+  <li><b>ORB%:</b>
+    <ul>
+      <li><b>Files:</b> MRegularSeasonDetailedResults.csv and WRegularSeasonDetailedResults.csv and MNCAATourneyDetailedResults.csv and WNCAATourneyDetailedResults.csv</li>
+      <li><b>Column:</b> WOR - offensive rebounds (pulled by the winning team) and WDR - defensive rebounds (pulled by the winning team)</li>
+      <li><b>value:</b> Rebounds</li>
+    </ul>
+  </li>
+  <li><b>FTR:</b>
+    <ul>
+      <li><b>Files:</b> MRegularSeasonDetailedResults.csv and WRegularSeasonDetailedResults.csv and MNCAATourneyDetailedResults.csv and WNCAATourneyDetailedResults.csv</li>
+      <li><b>Column:</b> WFTM - free throws made (by the winning team)</li>
+      <li><b>value:</b> The total number of shots made (baskets), not the total points scored. </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+    <li><b>ATTR:</b>
+      <ul>
+        <li><b>Files:</b> MRegularSeasonDetailedResults.csv and WRegularSeasonDetailedResults.csv and MNCAATourneyDetailedResults.csv and WNCAATourneyDetailedResults.csv</li>
+        <li><b>Column:</b> WAst - assists (by the winning team) / WTO - turnovers committed (by the winning team)</li>
+        <li><b>value:</b> Assists / Tornovers </li>
+      </ul>
+    </li>
+    <li><b>RBMN:</b>
+      <ul>
+        <li><b>Files:</b> MRegularSeasonDetailedResults.csv and WRegularSeasonDetailedResults.csv and MNCAATourneyDetailedResults.csv and WNCAATourneyDetailedResults.csv</li>
+        <li><b>Column:</b> WOR - offensive rebounds (pulled by the winning team) and WDR - defensive rebounds (pulled by the winning team)</li>
+        <li><b>value:</b> Rebounds</li>
+      </ul>
+    </li>
+    <li><b>PAPG:</b>
+      <ul>
+        <li><b>Files:</b> MRegularSeasonDetailedResults.csv and WRegularSeasonDetailedResults.csv and MNCAATourneyDetailedResults.csv and WNCAATourneyDetailedResults.csv</li>
+        <li><b>Column:</b> LScore - this identifies the number of points scored by the losing team.</li>
+        <li><b>value:</b> Points</li>
+      </ul>
+    </li>
+</ul>
+<ul>
+    <li><b>Venue:</b>
+      <ul>
+        <li><b>Files:</b> MRegularSeasonDetailedResults.csv and WRegularSeasonDetailedResults.csv and MNCAATourneyDetailedResults.csv and WNCAATourneyDetailedResults.csv</li>
+        <li><b>Column:</b> WLoc - this identifies the "location" of the winning team. </li>
+        <li><b>value:</b>  If the winning team was the home team, this value will be "H". If the winning team was the visiting (or "away") team, this value will be "A". If it was played on a neutral court, then this value will be "N".</li>
+      </ul>
+    </li>
+    <li><b>Momentum:</b>
+      <ul>
+        <li><b>Files:</b> Added to each year and team.</li>
+        <li><b>Column:</b> Momentum </li>
+        <li><b>value:</b> mean of last 15 games. Something that gauges how well the team has done during the last 15 games.</li>
+      </ul>
+    </li>
+</ul>
 {% endblock %}

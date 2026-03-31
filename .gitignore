@@ -1,0 +1,25 @@
+# Byte-code files
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Editor/OS temporary files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Flask specific
+instance/
+
+# the rules say not to give their data
+*.csv
+*.json
+
+# Python specific

@@ -1,0 +1,168 @@
+<!-- templates/index.html -->
+{% extends 'layout.html' %}
+
+{% block title %}Tools{% endblock %}
+
+{% block content %}
+<h1 class="my-4">Pandas Joins</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+<pre><code>
+import pandas as pd
+
+# Creating dataframe a
+a = pd.DataFrame()
+d = {'id': [1, 2, 10, 12],
+     'val1': ['a', 'b', 'c', 'd']}
+a = pd.DataFrame(d)
+
+# Creating dataframe b
+b = pd.DataFrame()
+d = {'id': [1, 2, 9, 8],
+     'val1': ['p', 'q', 'r', 's']}
+b = pd.DataFrame(d)
+</code></pre>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{ url_for('static', filename='img/joins/inner_join.png') }}" class="img-fluid rounded-start" alt="Responsive image description">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Inner Join</h5>
+              <p class="card-text">Inner join is the most common type of join you’ll be working with.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="card-body">
+          <p class="card-text">It returns a Dataframe with only those rows that have common characteristics. This is similar to the intersection of two sets..</p>
+<pre><code>
+# inner join
+df = pd.merge(
+  a, b,
+  on='id',
+  how='inner'
+)
+</code></pre>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{ url_for('static', filename='img/joins/left_join.png') }}" class="img-fluid rounded-start" alt="Responsive image description">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Left Outer Join</h5>
+              <p class="card-text">SQL joins require defined positions for the tables being joined, typically referred to as the left and right tables.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="card-body">
+          <p class="card-text">With a left outer join, all the records from the first Dataframe will be displayed, irrespective of whether the keys in the first Dataframe can be found in the second Dataframe. Whereas, for the second Dataframe, only the records with the keys in the second Dataframe that can be found in the first Dataframe will be displayed.</p>
+<pre><code>
+# left outer join
+df = pd.merge(
+  a, b,
+  on='id',
+  how='left'
+)
+</code></pre>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{ url_for('static', filename='img/joins/right_join.png') }}" class="img-fluid rounded-start" alt="Responsive image description">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Right Outer Join</h5>
+              <p class="card-text">The order determines which table serves as the primary base (left) and which is matched against it (right).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="card-body">
+          <p class="card-text">For a right join, all the records from the second Dataframe will be displayed. However, only the records with the keys in the first Dataframe that can be found in the second Dataframe will be displayed.</p>
+<pre><code>
+# right outer join
+df = pd.merge(
+  a, b,
+  on='id',
+  how='right'
+)
+</code></pre>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{ url_for('static', filename='img/joins/outer_join.png') }}" class="img-fluid rounded-start" alt="Responsive image description">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Outer Join</h5>
+              <p class="card-text">This is also called Full Outer Join or simply Outer Join.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="card-body">
+          <p class="card-text">A full outer join returns all the rows from the left Dataframe, and all the rows from the right Dataframe, and matches up rows where possible, with NaNs elsewhere. But if the Dataframe is complete, then we get the same output.</p>
+<pre><code>
+# full outer join
+df = pd.merge(
+  a, b,
+  on='id',
+  how='outer'
+)
+</code></pre>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <!-- <div class="col-md-4">
+          </div> -->
+          <div class="col-md-12">
+            <div class="card-body">
+              <h5 class="card-title">Index Join</h5>
+              <p class="card-text">To merge the Dataframe on indices pass the left_index and right_index arguments as True i.e. both the Dataframes are merged on an index using default Inner Join.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="card-body">
+          <p class="card-text">To merge the Dataframe on indices pass the left_index and right_index arguments as True i.e. both the Dataframes are merged on an index using default Inner Join.</p>
+<pre><code>
+# index join
+df = pd.merge(
+  a, b,
+  left_index=True,
+  right_index=True
+)
+</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,4 +1,4 @@
-# pip install flask Flask-SQLAlchemy pandas numpy scikit-learn
+# pip install flask Flask-SQLAlchemy pandas numpy scikit-learn tensorflow
 from data import Data
 from config import Config
 import flask
@@ -92,6 +92,10 @@ def data():
   category = request.args.get('category', 'all')
   csv_columns_map = Data.get_all_columns_and_names(getCompetition(), category)
   return flask.render_template('data.html', csv_data=csv_columns_map)
+
+@app.route('/tools')
+def tools():
+  return flask.render_template('tools.html')
 
 @app.route('/tables')
 def tables():
