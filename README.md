@@ -11,7 +11,7 @@ in PS:
   - pip install matplotlib seaborn tensorflow torch numpy pandas scikit-learn Flask Flask-SQLAlchemy
   - python app.py
 
-This app is just to show where I am in hopes of someday getting a position doing AI where I work. I'm happy in my current position though and if I end up staying there I will be happy. More than the position its the fun of solving puzzles and the hopes of writing a paper on some new functionality that advances AI. I LOve the company I work at. Go USA!
+This app is just to show where I am in hopes of someday getting a position doing AI where I work. More than the position its the fun of solving puzzles and the hopes of writing a paper on some new functionality that advances AI. Thanks to the company I work for. Go USA!
 
 ## File Structure
 - competitions
