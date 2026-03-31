@@ -4,6 +4,15 @@ This site is a combination of both flask and AI scripts. There is a competition 
 ## Installation
 Each script has a list of pip installs and instructions using .venv and Powershell in a comment. For all scripts including the flask app the process is the same. Create your .venv, activate it, pip install your packages, and run the script using the comment.
 
+in PS:
+cd <path-to-your-project>
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install matplotlib seaborn tensorflow torch numpy pandas scikit-learn Flask Flask-SQLAlchemy
+python app.py
+
+This app is just to show where I am in hopes of maybe getting a position doing AI one day where I work. I'm happy in my position though and if I end up staying there I will be happy. More than the position its the fun of solving puzzles and the hopes of writeing a paper with the invention of some new functionality that advances AI. I LOve the company I work at. Go USA!
+
 ## File Structure
 - competitions
   - arc_prize

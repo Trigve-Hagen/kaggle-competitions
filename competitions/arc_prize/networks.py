@@ -25,7 +25,7 @@ print(layer_outputs)
 
 # dot product
 # Key take away is dot product is the same calculation as the forward pass calculation
-# on a neuron
+# without adding the bias on a neuron
 """ inputs = [1, 2, 3, 2.5]
 weights = [0.2, 0.8, -0.5, 1.0]
 bias = [2]
