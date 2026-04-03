@@ -21,5 +21,7 @@ instance/
 # the rules say not to give their data
 *.csv
 *.json
+*.pdf
+kaggle_evaluation/
 
 # Python specific
