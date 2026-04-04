@@ -6,9 +6,7 @@
 {% block content %}
 
 <h3 class="my-4">Converting Data for ML</h3>
-<p>What would numpy need as a X and y? Would there be Headings? Only numeric data? How to deal with errors relating to left over non nummeric data.
-<br />What would tensorflow, pytorch or predefined AI model building libraries need?
-</p>
+<p>Within the scikit-learn library <b>LabelEncoder</b> is primarily designed for encoding the target variable <b>y</b> in supervised learning (e.g., converting "Cat", "Dog", "Bird" into 0, 1, 2).</p>
 <h3 class="my-4">K-Nearest Neighbor Regression</h3>
 <p>"The square root of the sum of the squared differences between the x-coordinates and y-coordinates."</p>
 <p>The Euclidean distance formula calculates the straight-line distance between two points.
@@ -94,11 +92,62 @@
 <br />
 <p>"The negative average of the true class labels multiplied by the natural logarithm of the predicted probabilities"</p>
 <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo largeop="true" movablelimits="true">∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mo>[</mo><msub><mi>y</mi><mi>i</mi></msub><mi>log</mi><mo>(</mo><msub><mover accent="true"><mi>y</mi><mo>̂</mo></mover><mi>i</mi></msub><mo>)</mo><mo>+</mo><mo>(</mo><mn>1</mn><mo>−</mo><msub><mi>y</mi><mi>i</mi></msub><mo>)</mo><mi>log</mi><mo>(</mo><mn>1</mn><mo>−</mo><msub><mover accent="true"><mi>y</mi><mo>̂</mo></mover><mi>i</mi></msub><mo>)</mo><mo>]</mo></mrow><annotation encoding="text/plain">cap L equals negative the fraction with numerator 1 and denominator cap N end-fraction sum from i equals 1 to cap N of open bracket y sub i log open paren y hat sub i close paren plus open paren 1 minus y sub i close paren log open paren 1 minus y hat sub i close paren close bracket</annotation></semantics></math>
-<br /><br /><br />
+<br /><br />
 <p>
-<br /></p>
-
 <h3 class="my-4">Decision Trees</h3>
+<p><b>Classification Trees</b> predict Yes and No. <b>Regression Trees</b> predict a number. They both fall under <b>Supervised Learning</b> that trains a model with labeled datasets where the predicted value is known. These trees has three tyes of nodes. <b>Decision Nodes</b> is at the very top of the tree and represents the question. It has two or more branches called <b>Internal Nodes</b> that represent possible solutions to the problem. And <b>Leaf Nodes</b> that represent the actual output or class label. A few <b>Attribute Selection Techniques</b> you must know about in machine learning are <b>Entropy</b> a measure of randomness in the information being processed is the irrational and misenformed trends that contribute to the misrepresentation of the underling data (emotional trading), <b>Information Gain</b> shows the difference between the entropy of the root node and the weighted average entropy of internal or leaf node and <b>Gini Index</b> measures the purity and the impority used while creating a decision tree. Not that an attribute with a low gini index is prefered over a high gini index.
+<br />
+<br />Comprehending the design of a decision tree:
+<br /> - Identifying the objective
+<br /> - List all possible choices or actions
+<br /> - Identifying the criteria for each action
+<br /> - Evaluation the decision tree diagram
+<br />
+<br />Training:
+<br /> - Calculate the <b>Information Gain</b> with each possible split
+<br /> - Divide set with that feature and value that gives the most IG
+<br /> - Devide tree and do the same for all created branches..
+<br /> - ..until a <b>Stopping Criteria</b> is reached
+<br />
+<br />Testing:
+<br /> - Follow the tree until you reach a leaf node
+<br /> - Return the most common class label
+<br />
+<br /><b>Information Gain</b>
+<br /></p>
+<p>"The entropy before the split minus the weighted entropy after the split."</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>I</mi><mi>G</mi><mo>=</mo><mi>E</mi><mo>(</mo><mi>parent</mi><mo>)</mo><mo>−</mo><mo>[</mo><mi>weighted average</mi><mo>]</mo><mo>*</mo><mi>E</mi><mo>(</mo><mi>children</mi><mo>)</mo></math>
+<br /><br />
+<p><b>Entropy</b>
+<br /></p>
+<p>"The negative sum of probabilities multiplied by their log."</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>E</mi><mo>=</mo><mo>-</mo><mo>∑</mo><mi>P</mi><mo>(</mo><mi>X</mi><mo>)</mo><mo>*</mo><mi>log</mi><mi>P</mi><mo>(</mo><mi>X</mi><mo>)</mo></mrow></math>
+<br />
+<br />
+<p>The summation represents the combining of the different calculations. If we calculated the 50% chance, the first calculation would be the same as the second calculation so we could just add the first calculation to itself. If we are calculation 25% and 75% though we get both calculations and at the end add them together hence summation.<br /><br />To calculate the entropy of a specific event X with probability P(X) you calculate this:
+<br />
+<br /><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>-</mo><mi>P</mi><mo>(</mo><mi>X</mi><mo>)</mo><mo>*</mo><msub><mi>log</mi><mn>2</mn></msub><mo>(</mo><mi>P</mi><mo>(</mo><mi>X</mi><mo>)</mo><mo>)</mo></mrow></math>
+<br /><br />As an example, let's calculate the entropy of a fair coin.<br />The probability of heads is 50%. Here's the entropy we get when plugging that 0.5 into the equation:<br /><br />
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>E</mi><mi>heads</mi><mo>=</mo><mo>-</mo><mn>0.5</mn><mo>*</mo><msub><mi>log</mi><mn>2</mn></msub><mo>(</mo><mn>0.5</mn><mo>)</mo></mrow></math>
+<br /><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>E</mi><mi>heads</mi><mo>=</mo><mo>-</mo><mn>0.5</mn><mo>*</mo><mi>-</mi><mn>1</mn></mrow></math>
+<br /><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>E</mi><mi>heads</mi><mo>=</mo><mn>0.5</mn></mrow></math>
+<br /><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>E</mi><mi>tails</mi><mo>=</mo><mn>0.5</mn></mrow></math>
+<br /><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>E</mi><mo>=</mo><mn>0.5</mn><mo>+</mo><mn>0.5</mn></mrow></math>
+<br /><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>E</mi><mo>=</mo><mn>1</mn></mrow></math>
+<br />
+<br />Now lets plug in .25 and .75:
+<br />
+<br /><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>E</mi><mi>twenty-five</mi><mo>=</mo><mo>-</mo><mn>0.25</mn><mo>*</mo><msub><mi>log</mi><mn>2</mn></msub><mo>(</mo><mn>0.25</mn><mo>)</mo></mrow></math>
+<br /><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>E</mi><mi>twenty-five</mi><mo>=</mo><mo>-</mo><mn>0.25</mn><mo>*</mo><mi>-</mi><mn>2</mn></mrow></math>
+<br /><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>E</mi><mi>twenty-five</mi><mo>=</mo><mn>0.5</mn></mrow></math>
+<br /><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>E</mi><mi>seventy-five</mi><mo>=</mo><mo>-</mo><mn>0.75</mn><mo>*</mo><msub><mi>log</mi><mn>2</mn></msub><mo>(</mo><mn>0.75</mn><mo>)</mo></mrow></math>
+<br /><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>E</mi><mi>seventy-five</mi><mo>=</mo><mo>-</mo><mn>0.75</mn><mo>*</mo><mi>-</mi><mn>0.415</mn></mrow></math>
+<br /><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>E</mi><mi>seventy-five</mi><mo>=</mo><mn>0.311</mn></mrow></math>
+<br /><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>E</mi><mo>=</mo><mn>0.5</mn><mo>+</mo><mn>0.311</mn></mrow></math>
+<br /><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>E</mi><mo>=</mo><mn>0.811</mn></mrow></math></p>
+<p><b>Stopping Criteria</b>
+<br /></p>
+<p>"The maximum depth, minimum number of samples, minimum impurity decrease."</p>
 
 <h3 class="my-4">Random Forest</h3>
 

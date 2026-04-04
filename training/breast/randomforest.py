@@ -29,3 +29,11 @@ def accuracy(y_test, y_pred):
 
 acc = accuracy(y_test, predictions)
 print(acc)
+
+# data = datasets.load_breast_cancer()
+# X, y = data.data, data.target
+
+# (.venv)
+# activate and install dependencies
+# python -m training.breast.randomforest
+
