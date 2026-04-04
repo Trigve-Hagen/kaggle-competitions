@@ -17,7 +17,7 @@ from pathlib import Path
 import pandas as pd
 
 script_dir = Path(__file__).parent
-DATASET = script_dir / "dataset" / 'data_kaggle.csv'
+DATASET = script_dir / "dataset" / 'data.csv'
 
 data = pd.read_csv(DATASET)
 

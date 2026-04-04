@@ -1,4 +1,4 @@
-from classes.aai.decisiontree import DecisionTree
+from classes.aai.randomforest import RandomForest
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn import datasets
@@ -20,7 +20,7 @@ y = le.fit_transform(y)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1234)
 
-clf = DecisionTree()
+clf = RandomForest()
 clf.fit(X_train, y_train)
 predictions = clf.predict(X_test)
 
@@ -29,10 +29,3 @@ def accuracy(y_test, y_pred):
 
 acc = accuracy(y_test, predictions)
 print(acc)
-
-# data = datasets.load_breast_cancer()
-# X, y = data.data, data.target
-
-# (.venv)
-# activate and install dependencies
-# python -m training.breast.decisiontree
