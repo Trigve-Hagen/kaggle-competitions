@@ -23,5 +23,6 @@ instance/
 *.json
 *.pdf
 kaggle_evaluation/
+training/micrograd/consolegraph.py
 
 # Python specific

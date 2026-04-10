@@ -5,7 +5,24 @@
 
 {% block content %}
 
-<h3 class="my-4">Converting Data for ML</h3>
+<h3 class="my-4">Machine Learning</h3>
+<p>A model takes a dataset, one row of a list of columns(X, features) and in a forward pass calculates an output using weights and bias(random at first) on the input. The output is then used as the next neurons input and through a network of neuron layers re-calculated till it reaches the final output where it is compared to the label(y, true value) to detects the loss. If it is still needing adjustment it creates new weights and bias for each neuron and combined with a learning rate sends the numbers back through the calculations in a function called back propagation which recalculates the weights and bias on each input to bring the output as closes as it can to a perfect fit. The weights and bias of the most correct pass are saved to a vector database and are what a network uses to derive a prediction.
+<br />
+<br /><b>Partial Derivatives:</b>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mo>&part;</mo><mn>L</mn></mrow><mrow><mo>&part;</mo><mn>w</mn></mrow></mfrac></math>
+Measure the sensitivity of the loss function (L) to a single parameter (weight or bias) individually. They indicate the gradient direction to reduce loss.
+<br />
+<br /><b>Chain Rule (Back Propagation):</b>
+Used to calculate the derivative of composite functions, such as
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>L</mn><mo>(</mo><mn>a</mn><mo>(</mo><mn>z</mn><mo>(</mo><mn>w</mn><mo>)</mo><mo>)</mo><mo>)</mo></mrow></math>. To update a weight in an early layer, the chain rule multiplies partial derivatives:
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mfrac><mrow><mo>&part;</mo><mn>L</mn></mrow><mrow><mo>&part;</mo><mn>w</mn></mrow></mfrac><mo>=</mo>
+  <mfrac><mrow><mo>&part;</mo><mn>L</mn></mrow><mrow><mo>&part;</mo><mn>a</mn></mrow></mfrac><mo>*</mo>
+  <mfrac><mrow><mo>&part;</mo><mn>a</mn></mrow><mrow><mo>&part;</mo><mn>z</mn></mrow></mfrac><mo>*</mo>
+  <mfrac><mrow><mo>&part;</mo><mn>z</mn></mrow><mrow><mo>&part;</mo><mn>w</mn></mrow></mfrac></math>.
+  Loss functions in machine learning are inherently multivariable because they depend on multiple independent variables—specifically the model's parameters (weights and biases).
+</p>
+<p>Could training a certain feature (multiple models maybe) instead of a whole feature set be more effective in getting rid of overfitting and underfitting? What about after the training double checking we have reached the lowest error on a feature?</p>
 <p>Within the scikit-learn library <b>LabelEncoder</b> is primarily designed for encoding the target variable <b>y</b> in supervised learning (e.g., converting "Cat", "Dog", "Bird" into 0, 1, 2).</p>
 <h3 class="my-4">K-Nearest Neighbor Regression</h3>
 <p>"The square root of the sum of the squared differences between the x-coordinates and y-coordinates."</p>
@@ -25,8 +42,9 @@
 <br />The Euclidean distance = 5</p>
 
 <h3 class="my-4">Linear Regression</h3>
+<b>Supervised machine learning</b>
 <p>"The mean squared error is the average of the squared differences between the observed values and the predicted values."</p>
-<math display="inline">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
   <mrow>
     <mn>M</mn>
     <mn>S</mn>
@@ -150,7 +168,20 @@
 <p>"The maximum depth, minimum number of samples, minimum impurity decrease."</p>
 
 <h3 class="my-4">Random Forest</h3>
-
+<p><b>Random Forest</b> creates multiple decision trees and when they are all built gets a vote on what label should be used.
+<br />
+<br />Training:
+<br />Given the whole dataset:
+<br /> - Get a subset of the dataset
+<br /> - Create a Decision tree
+<br /> - Repeat for as many times as the number of trees
+<br />
+<br />Testing:
+<br />Given a data point:
+<br /> - Get the prediction from each tree
+<br /> - <b>Classification</b> hold a majority vote
+<br /> - <b>Regression</b> get the mean of the predictions
+<br /></p>
 <h3 class="my-4">Naive Bayes</h3>
 
 <h3 class="my-4">Principal Component Analysis</h3>

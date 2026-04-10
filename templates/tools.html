@@ -4,6 +4,29 @@
 {% block title %}Tools{% endblock %}
 
 {% block content %}
+<h1 class="my-4">Stuctures Python</h1>
+<p>For a collection of strings in Python, the list is the standard and most versatile choice. Choosing the right structure depends on how you plan to access or modify that data:</p>
+<ol>
+  <li><b>List (Best for General Use)</b> Use a Python list if you need an ordered sequence of strings that you can add to, remove from, or change.
+    <br /><b>Pros:</b> Built-in, highly flexible, supports duplicates, and maintains insertion order.
+    <br /><b>Example:</b> names = ["Alice", "Bob", "Charlie"]</li>
+
+  <li><b>Dictionary (dict) (Best for Lookups)</b> Use a Python dictionary if each string is associated with a specific label or if you need to find a value instantly without searching the whole collection.
+    <br /><b>Pros:</b> Fast lookups by key; ideal for mapping unique identifiers to data.
+    <br /><b>Example:</b> user_emails = {"Alice": "alice@eg.com", "Bob": "bob@eg.com"}</li>
+
+  <li><b>Set (Best for Uniqueness & Search)</b> Use a Python set if you only care whether a string exists in the collection and want to ensure there are no duplicates.
+    <br /><b>Pros:</b> Extremely fast "membership testing" (checking if "Alice" is in the set) compared to a list.
+    <br />Example:</b> unique_tags = {"python", "coding", "dev"}</li>
+
+  <li><b>Tuple (Best for Fixed Data)</b> Use a Python tuple if the list of strings will never change after it is created.
+    <br /><b>Pros:</b> Slightly more memory-efficient than lists and can be used as keys in dictionaries because they are immutable.
+    <br />Example:</b> coordinates = ("North", "West")</li>
+
+  <li><b>Array</b> (Rarely used for strings) The Python array module or NumPy arrays are primarily optimized for numerical data.
+    <br /><b>Note:</b> While you can store strings in NumPy arrays, they are rarely used for simple string lists unless you are performing massive scientific computations or matrix operations.</li>
+</ol>
+
 <h1 class="my-4">Pandas Joins</h1>
 <div class="container">
   <div class="row">
@@ -165,4 +188,5 @@ df = pd.merge(
     </div>
   </div>
 </div>
+
 {% endblock %}
