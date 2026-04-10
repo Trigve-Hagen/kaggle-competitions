@@ -154,7 +154,6 @@ def draw_dot(root):
 
   return dot
 
-
 a = Value(2.0, label='a')
 b = Value(-3.0, label='b')
 c = Value(10.0, label='c')
@@ -163,13 +162,50 @@ d = e+c; d.label = 'd'
 f = Value(-2.0, label='f')
 L = d*f; L.label = 'L'
 
+L.grad = 1.0
+
+draw_dot(L)
+
+def lol():
+  h = 0.0001
+
+  a = Value(2.0, label='a')
+  b = Value(-3.0, label='b')
+  c = Value(10.0, label='c')
+  e = a*b; e.label = 'e'
+  d = e+c; d.label = 'd'
+  f = Value(-2.0, label='f')
+  L = d*f; L.label = 'L'
+  L1 = L.data
+
+  a = Value(2.0, label='a')
+  b = Value(-3.0, label='b')
+  c = Value(10.0, label='c')
+  e = a*b; e.label = 'e'
+  d = e+c; d.label = 'd'
+  f = Value(-2.0, label='f')
+  L = d*f; L.label = 'L'
+  L2 = L.data + h
+
+  print((L2 - L1)/h)
+
+lol()
+
 # print(L)
 
 # print(d._prev)
 
 # outputs: {Value(data=4.0), Value(data=10.0)}
 
-print(draw_dot(L))
+
+
+# definition of a derivative
+# (f(x + h) - f(x)) / h
+
+# for graphiz i installed via windows installer
+# https://forum.graphviz.org/t/new-simplified-installation-procedure-on-windows/224
+# made sure it was installed with pip install graphiz
+# and then used mathplotlib to show it
 
 # (.venv)
 # activate and install dependencies
