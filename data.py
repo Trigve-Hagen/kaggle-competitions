@@ -16,7 +16,7 @@ class Data:
   # Reads all CSV files in a directory and returns a set of unique column names.
   def get_all_column_names(competition):
     # Use glob to find all files ending with .csv in the specified directory
-    files = glob.glob(os.path.join('competitions', competition, '*.csv'))
+    files = glob.glob(os.path.join('competitions', competition, 'dataset', '*.csv'))
     all_columns = set()
 
     # Iterate through each file
@@ -34,7 +34,7 @@ class Data:
     csv_columns_map = {}
     # Use glob to find all CSV files in the current directory
     # Change '*.csv' to the specific path if your files are in another folder
-    for file_path in glob.glob(os.path.join('competitions', competition, '*.csv')):
+    for file_path in glob.glob(os.path.join('competitions', competition, 'dataset', '*.csv')):
       # Read only the header (first row) of the CSV file
       try:
           df_header = pd.read_csv(file_path, nrows=0)
@@ -53,10 +53,10 @@ class Data:
 
   def get_data(competition, item):
     # Construct the path to the CSV file
-    csv_path = os.path.join('competitions', competition, item)
+    csv_path = os.path.join('competitions', competition, 'dataset', item)
 
     # Read the data from the CSV file into a pandas DataFrame
-    df = pd.read_csv(csv_path, nrows=500)
+    df = pd.read_csv(csv_path, nrows=15)
 
     # Convert the DataFrame to an HTML table string
     # index=False prevents pandas from adding an extra column for the index

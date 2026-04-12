@@ -164,7 +164,18 @@ L = d*f; L.label = 'L'
 
 L.grad = 1.0
 
-draw_dot(L)
+# draw_dot(L)
+
+a.data += 0.01 * a.grad
+b.data += 0.01 * b.grad
+c.data += 0.01 * c.grad
+f.data += 0.01 * f.grad
+
+e = a * b
+d = e + c
+L = d * f
+
+# print(L.data)
 
 def lol():
   h = 0.0001
@@ -189,15 +200,77 @@ def lol():
 
   print((L2 - L1)/h)
 
-lol()
+# lol()
+
+# plt.plot(np.arange(-5,5,0.2), np.tanh(np.arange(-5,5,0.2))); plt.grid();
+# plt.show()
+
+# inputs x1,x2
+x1 = Value(2.0, label='x1')
+x2 = Value(0.0, label='x2')
+# weights w1,w2
+w1 = Value(-3.0, label='w1')
+w2 = Value(1.0, label='w2')
+# bias of the neuron
+b = Value(6.8813735870195432, label='b')
+# x1*w1 + x2*w2 + b
+x1w1 = x1*w1; x1w1.label = 'x1*w1'
+x2w2 = x2*w2; x2w2.label = 'x2*w2'
+x1w1x2w2 = x1w1 + x2w2; x1w1x2w2.label = 'x1*w1 + x2*w2'
+n = x1w1x2w2 + b; n.label = 'n'
+o = n.tanh(); o.label = 'o'
+
+""" # starts at 1.0
+o.grad = 1.0
+# 1 - tanh(n)**2
+n.grad = 0.5
+# plus = distribute the value
+x1w1x2w2.grad = 0.5
+b.grad = 0.5
+x1w1.grad = 0.5
+x2w2.grad = 0.5
+
+x1.grad = w1.data * x2w2.grad
+w1.grad = x1.data * x2w2.grad
+x2.grad = w2.data * x1w1.grad
+w2.grad = x2.data * x1w1.grad """
+
+""" o.grad = 1.0
+o._backward()
+n._backward()
+b._backward()
+x1w1x2w2._backward()
+x1w1._backward()
+x2w2._backward() """
+
+# o.backward()
+# draw_dot(o)
+
+""" a = Value(3.0, label='a')
+b = a + a   ; b.label = 'b'
+b.backward()
+draw_dot(b) """
+
+a = Value(-2.0, label='a')
+b = Value(3.0, label='b')
+d = a * b    ; d.label = 'd'
+e = a + b    ; e.label = 'e'
+f = d * e    ; f.label = 'f'
+
+f.backward()
+
+draw_dot(f)
+
+
+
+
+
+
 
 # print(L)
 
 # print(d._prev)
-
 # outputs: {Value(data=4.0), Value(data=10.0)}
-
-
 
 # definition of a derivative
 # (f(x + h) - f(x)) / h

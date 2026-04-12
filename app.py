@@ -132,7 +132,7 @@ def competitions():
 
 @app.context_processor
 def submissions():
-  FILES_DIR = os.path.join(app.root_path, 'competitions', getCompetition(), 'submissions')
+  FILES_DIR = os.path.join(app.root_path, 'competitions', getCompetition())
   files = {}
   for entry in os.listdir(FILES_DIR):
     full_path = os.path.join(FILES_DIR, entry)
