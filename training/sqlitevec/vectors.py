@@ -25,7 +25,7 @@ sqlite_vec.load(db)
 db.enable_load_extension(False)
 
 sqlite_version, vec_version = db.execute(
-    "select sqlite_version(), vec_version()"
+  "select sqlite_version(), vec_version()"
 ).fetchone()
 print(f"sqlite_version={sqlite_version}, vec_version={vec_version}")
 

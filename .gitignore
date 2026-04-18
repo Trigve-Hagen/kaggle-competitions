@@ -9,6 +9,12 @@ venv/
 env/
 .venv/
 
+# Environment Variables
+.env
+
+# Kaggle
+.kaggle/
+
 # Editor/OS temporary files
 .idea/
 .vscode/
@@ -26,3 +32,4 @@ kaggle_evaluation/
 training/micrograd/consolegraph.py
 
 # Python specific
+llama.py
