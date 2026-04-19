@@ -2,6 +2,7 @@ import os
 import math
 import time
 import inspect
+import tiktoken
 from dataclasses import dataclass
 import torch
 import torch.nn as nn
@@ -182,16 +183,57 @@ elif hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
   device = "mps"
 print(f"using device: {device}")
 
+# get a data batch
+enc = tiktoken.get_encoding('gpt2')
+input_file_path = os.path.join(os.path.dirname(__file__), "dataset", 'input.txt')
+with open(input_file_path, 'r') as f:
+  text = f.read()
+text = text[:1000]
+tokens = enc.encode(text)
+B, T = 4, 32
+buf = torch.tensor(tokens[:B*T + 1])
+buf = buf.to(device)
+x = buf[:-1].view(B, T)
+y = buf[1:].view(B, T)
+
+# model = GPT.from_pretrained('gpt2')
+model = GPT(GPTConfig())
+model.to(device)
+logits, loss = model(x, y)
+
+# print(logits.shape)
+# outputs
+# torch.Size([4, 32, 50257])
+
+# In mathematics, ln stands for the natural logarithm, which is a logarithm
+# with the base e (Euler's number, approx 2.71828). It calculates the exponent
+# to which e must be raised to equal a given number x(ln(x) = log_e(x)). It is
+# the inverse function of the exponential function e^x
+
+# calculating a reasonable random starting point (uniform probability) for inputs
+# would be the negative natural logarithym of 1 over the vocabulary size
+# ln(1/50257) = -10.8249051197 = -(-10.8249051197) = 10.8249051197
+
+# print(loss)
+# outputs
+# tensor(10.9200, grad_fn=<NllLossBackward0>)
+# which works nicely becuse 10.8249051197 is close to 10.9200
+
+optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4)
+for i in range(50):
+  optimizer.zero_grad()
+  logits, loss = model(x, y)
+  loss.backward()
+  optimizer.step()
+  print(f"step {i}, loss: {loss.item()}")
+
+import sys; sys.exit(0)
+
+# prefix tokens
+model.eval()
 num_return_sequences = 5
 max_length = 30
 
-model = GPT.from_pretrained('gpt2')
-# model = GPT(GPTConfig())
-model.eval()
-model.to(device)
-# print("Didn't crash!")
-
-# prefix tokens
 import tiktoken
 enc = tiktoken.get_encoding('gpt2')
 tokens = enc.encode("Hello, I'm a language model,")
