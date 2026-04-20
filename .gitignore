@@ -31,5 +31,6 @@ instance/
 kaggle_evaluation/
 training/micrograd/consolegraph.py
 
-# Python specific
+# other
 llama.py
+notes/
