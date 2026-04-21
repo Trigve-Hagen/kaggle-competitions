@@ -53,6 +53,15 @@ class MLP(nn.Module):
     x = self.c_proj(x)
     return x
 
+# Masked Self-Attention: Unlike BERT, GPT-2 blocks use "masked" attention,
+# restricting the model to only look at previous and present tokens,
+# ensuring it doesn't "peek" at future tokens during training.
+
+# In GPT-2, "Blocks" (or Transformer Blocks) are the repeating, stacked neural
+# network layers that enable the model to understand context and generate text.
+# They are decoder-only Transformer layers consisting of masked multi-head
+# self-attention and a multi-layer perceptron (MLP), which together process
+# token embeddings to build complex language representations.
 class Block(nn.Module):
 
   def __init__(self, config):
@@ -247,13 +256,17 @@ model.to(device)
 # optomize!
 optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4)
 for i in range(50):
+  t0 = time.time()
   x, y = train_loader.next_batch()
   x, y = x.to(device), y.to(device)
   optimizer.zero_grad()
   logits, loss = model(x, y)
   loss.backward()
   optimizer.step()
-  print(f"step {i}, loss: {loss.item()}")
+  # torch.cuda.synchronize()
+  t1 = time.time()
+  dt = (t1 - t0)*1000 # time difference in miliseconds
+  print(f"step {i}, loss: {loss.item()}, dt {dt:.2f}ms")
 
 import sys; sys.exit(0)
 
