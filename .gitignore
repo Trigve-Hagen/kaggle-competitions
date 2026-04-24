@@ -34,3 +34,4 @@ training/micrograd/consolegraph.py
 # other
 llama.py
 notes/
+open_spiel/
