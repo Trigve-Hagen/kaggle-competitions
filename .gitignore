@@ -25,7 +25,9 @@ Thumbs.db
 instance/
 
 # the rules say not to give their data
-*.csv
+competitions/*/*.csv
+competitions/*/dataset/*.csv
+competitions/*/submissions/*.csv
 *.json
 *.pdf
 kaggle_evaluation/
